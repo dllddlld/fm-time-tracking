@@ -82,10 +82,6 @@ main {
     align-items: center;
 }
 
-.previous {
-    margin-top: 0.8rem;
-}
-
 /* --- profile card --- */
 
 .card-banner.profile {
@@ -218,6 +214,10 @@ footer {
     .card-header {
         margin-bottom: 1rem;
     }
+
+    .previous {
+        margin-top: 0.8rem;
+    }
 }
 
 @media screen and (min-width: 800px) and (max-width: 1000px) {
@@ -243,9 +243,8 @@ footer {
 
     .tt-container {
         grid-template-columns: auto;
-        grid-template-rows: 1.5fr repeat(6, 1fr);
+        grid-template-rows: 1.2fr repeat(6, 1fr);
         gap: 1.5rem;
-        display: block;
     }
 
     .card-banner.profile {
@@ -263,12 +262,22 @@ footer {
         padding: 0 20px;
     }
 
+    .card-body.profile {
+        flex-direction: row;
+        justify-content: space-between;
+    }
+
+    .card-time {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    }
+
     h1 {
         font-size: 1.4rem;
     }
 
-    .card-body.profile {
-        flex-direction: row;
-        justify-content: space-between;
+    h2 {
+        font-size: 2rem;
     }
 }
