@@ -76,7 +76,13 @@ main {
     justify-content: end;
 }
 
-/* --- time tracking profile card --- */
+.card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+/* --- profile card --- */
 
 .card-banner.profile {
     padding: 2rem;
@@ -111,27 +117,31 @@ img.profile {
 
 /* --- card colours --- */
 
-.work-bg {
+.bg {
+    border-radius: 0px 0px 20px 20px;
+}
+
+.work.bg {
     background-color: var(--color-primary-work);
 }
 
-.play-bg {
+.play.bg {
     background-color: var(--color-primary-play);
 }
 
-.study-bg {
+.study.bg {
     background-color: var(--color-primary-study);
 }
 
-.exercise-bg {
+.exercise.bg {
     background-color: var(--color-primary-exercise);
 }
 
-.social-bg {
+.social.bg {
     background-color: var(--color-primary-social);
 }
 
-.self-care-bg {
+.self-care.bg {
     background-color: var(--color-primary-self-care);
 }
 
@@ -139,14 +149,14 @@ img.profile {
 
 h1 {
     font-weight: 300;
-    font-size: 3em;
+    font-size: 3rem;
     color: white;
     margin: 0;
 }
 
 h2 {
     font-weight: 300;
-    font-size: 4em;
+    font-size: 3.5rem;
     color: white;
     margin: 0;
 }
@@ -162,8 +172,13 @@ li {
     width: fit-content;
 }
 
+.card-body.profile {
+    font-size: 18px;
+}
+
 .card-title {
     font-weight: 500;
+    font-size: 18px;
 }
 
 /* --- footer --- */
@@ -186,7 +201,7 @@ footer {
 
 /* --- desktop layout --- */
 
-@media screen and (min-width: 1000px) {
+@media screen and (min-width: 800px) {
     .tt-container {
         grid-template-columns: repeat(4, 1fr);
         grid-template-rows: auto;
@@ -195,11 +210,25 @@ footer {
     .tt-card-container.profile {
         grid-row: 1 / span 2;
     }
+
+    .card-header {
+        margin-bottom: 1rem;
+    }
+}
+
+@media screen and (min-width: 800px) and (max-width: 1000px) {
+    h1 {
+        font-size: 2rem;
+    }
+
+    h2 {
+        font-size: 2.75rem;
+    }
 }
 
 /* --- mobile layout --- */
 
-@media screen and (max-width: 1000px) {
+@media screen and (max-width: 800px) {
     body {
         overflow: scroll;
     }
