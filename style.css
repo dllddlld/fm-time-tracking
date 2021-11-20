@@ -82,6 +82,10 @@ main {
     align-items: center;
 }
 
+.previous {
+    margin-top: 0.8rem;
+}
+
 /* --- profile card --- */
 
 .card-banner.profile {
@@ -99,7 +103,7 @@ main {
 }
 
 .card-content.profile {
-    padding: 40px 0;
+    padding: 40px 0 20px 0;
 }
 
 .icon.profile {
