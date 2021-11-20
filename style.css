@@ -66,6 +66,14 @@ main {
     padding: 2rem;
     border-radius: 10px 10px 0px 0px;
     background-color: var(--color-dark-blue);
+    box-shadow: 10px 10px var(--color-dark-blue),
+        -10px 10px var(--color-dark-blue);
+    transition: background-color 0.2s;
+    cursor: pointer;
+}
+
+.card-body:hover {
+    background-color: var(--color-desaturated-blue);
 }
 
 .card-icon-banner {
@@ -80,6 +88,15 @@ main {
     display: flex;
     justify-content: space-between;
     align-items: center;
+}
+
+.card-header>img {
+    cursor: pointer;
+    transition: filter 0.2s;
+}
+
+.card-header>img:hover {
+    filter: invert(0%) sepia(0%) saturate(0%) hue-rotate(255deg) brightness(103%) contrast(104%);
 }
 
 /* --- profile card --- */
@@ -97,6 +114,21 @@ main {
     flex-direction: column;
     justify-content: center;
     gap: 1rem;
+    cursor: default;
+}
+
+.card-body.profile:hover {
+    background-color: var(--color-dark-blue);
+}
+
+.stats-selection {
+    transition: color 0.2s;
+    cursor: pointer;
+}
+
+.stats-selection:hover,
+.stats-selection.active {
+    color: white;
 }
 
 .card-content.profile {
@@ -181,6 +213,7 @@ li {
 .card-title {
     font-weight: 500;
     font-size: 18px;
+    color: white;
 }
 
 /* --- footer --- */
