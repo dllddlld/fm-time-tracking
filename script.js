@@ -1,4 +1,5 @@
 const timeTracking = (function () {
+    let _frequency = 'weekly';
     const _attributes = [
         _createAttribute('work', 'images/icon-work.svg', 'Work'),
         _createAttribute('play', 'images/icon-play.svg', 'Play'),
@@ -25,10 +26,10 @@ const timeTracking = (function () {
             cardBg.appendChild(cardBody);
         });
 
-        populateCards();
+        _getCardsData();
     }
 
-    function populateCards() {
+    function _getCardsData() {
         fetch('data.json')
         .then(response => response.json())
         .then(dataList => {
@@ -37,17 +38,44 @@ const timeTracking = (function () {
         .catch(err => console.warn(err));
     }
 
+    function initializeListeners() {
+        let frequencySelectors = document.querySelectorAll('.stats-selection');
+        frequencySelectors.forEach(selectorEl => {
+            selectorEl.addEventListener('click', _changeFrequency);
+        });
+    }
+
     function _populateCards(dataList) {
         dataList.forEach(data => {
             let attribute = _attributes.find(attribute => attribute.title === data.title);
             data.type = attribute.type;
 
             let timeCurrentEl = document.querySelector(`h2[data-type="${data.type}"]`);
-            timeCurrentEl.textContent = data.timeframes.weekly.current + 'hrs';
+            timeCurrentEl.textContent = data.timeframes[_frequency].current + 'hrs';
 
             let timePreviousEl = document.querySelector(`.previous[data-type="${data.type}"]`);
-            timePreviousEl.textContent = 'Last week - ' + data.timeframes.weekly.previous + 'hrs';
+            let displayText = '';
+            switch(_frequency) {
+                case 'daily':
+                    displayText = 'Yesterday'
+                break;
+                case 'weekly':
+                    displayText = 'Last week'
+                break;
+                case 'monthly':
+                    displayText = 'Last month';
+                break;
+            }
+            timePreviousEl.textContent = displayText + ' - ' + data.timeframes[_frequency].previous + 'hrs';
         });
+    }
+
+    function _changeFrequency() {
+        _frequency = this.dataset.select;
+        let activeSelection = document.querySelector(`div.stats-selection.active`);
+        activeSelection.classList.remove('active');
+        this.classList.add('active');
+        _getCardsData();
     }
 
     function _createAttribute(type, bannerImage, title) {
@@ -109,11 +137,12 @@ const timeTracking = (function () {
 
     return {
         createCards,
-        populateCards
+        initializeListeners
     }
 })();
 
 window.onload = () => {
     timeTracking.createCards();
+    timeTracking.initializeListeners();
 };
 
